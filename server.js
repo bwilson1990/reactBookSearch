@@ -17,8 +17,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist", { useNewUrlParser: true });
-// mongoose.connect("mongodb://localhost/reactreadinglist", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/reactreadinglist", { useNewUrlParser: true });
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bookSearch_DB", { useNewUrlParser: true });
 
 const db = mongoose.connection;
 
