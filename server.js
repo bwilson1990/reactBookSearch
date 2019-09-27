@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const routes = require("./routes");
+// const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-
+const path = require("path");
+const db = require("./models");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -14,23 +15,55 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
-app.use(routes);
+// app.use(routes);
 
 // MongoDB Connection
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist", { useNewUrlParser: true });
 mongoose.connect("mongodb://localhost/reactreadinglist", { useNewUrlParser: true });
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bookSearch_DB", { useNewUrlParser: true });
 
-const db = mongoose.connection;
+// const db = mongoose.connection;
 
 // MongoDB Connection Error
-db.on("error", function(error) {
-  console.log("Mongoose Error: ", error);
+// db.on("error", function(error) {
+//   console.log("Mongoose Error: ", error);
+// });
+
+// // MongoDB Connection Success
+// db.on("open", function() {
+//   console.log("Mongoose connection successful.");
+// });
+
+app.get("/api/books", (req, res) => {
+  db.Book.find({})
+  .then(dbModel => res.json(dbModel))
+  .catch(function(err) {
+    res.json(err);
+  });
+})
+
+app.post("/api/books/:id", function(req, res) {
+  db.Book.create(req.body)
+  .then(function(dbBook) {
+    res.json(dbBook);
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
 });
 
-// MongoDB Connection Success
-db.on("open", function() {
-  console.log("Mongoose connection successful.");
+app.delete("/api/books/:id", function(req, res) {
+  db.Book.deleteOne({ _id: req.params.id })
+  .then(function(dbBooks) {
+    res.json(dbBooks);
+  });
 });
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+
+
 
 // API Server start
 app.listen(PORT, () => {
