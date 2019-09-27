@@ -36,7 +36,7 @@ class Search extends Component {
     saveBook = bookData => {
       API.saveBook(bookData)
       .then(res => {
-        this.setState()
+        this.setState({alert: true})
       })
       .catch(err => console.log(err));
     };
