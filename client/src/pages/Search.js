@@ -5,7 +5,6 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
 import API from "../utils/API";
-// import PoweredByGoogle from "../components/PoweredByGoogle"
 import Alert from "../components/Alert"
 import DeleteBtn from "../components/DeleteBtn";
 
@@ -63,7 +62,6 @@ class Search extends Component {
                   <FormBtn disabled={!(this.state.search)}onClick={this.handleFormSubmit}>
                     Search
                   </FormBtn>
-                  {/* <PoweredByGoogle /> */}
                 </form>
               </Col>
               <Col size="md-6 sm-12">

@@ -4,7 +4,6 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-// import PoweredByGoogle from "../components/PoweredByGoogle"
 
 class Saved extends Component {
   state = {
@@ -62,7 +61,6 @@ class Saved extends Component {
         ) : (
             <h3>No Results to Display</h3>
           )}
-          {/* <PoweredByGoogle /> */}
       </Container>
     );
   }

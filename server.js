@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const path = require("path");
@@ -14,25 +13,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// Define API routes here
-// app.use(routes);
-
 // MongoDB Connection
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist", { useNewUrlParser: true });
 mongoose.connect("mongodb://localhost/reactreadinglist", { useNewUrlParser: true });
 
-// const db = mongoose.connection;
-
-// MongoDB Connection Error
-// db.on("error", function(error) {
-//   console.log("Mongoose Error: ", error);
-// });
-
-// // MongoDB Connection Success
-// db.on("open", function() {
-//   console.log("Mongoose connection successful.");
-// });
-
+// Define API routes here
 app.get("/api/books", (req, res) => {
   db.Book.find({})
   .then(dbModel => res.json(dbModel))
@@ -61,9 +45,6 @@ app.delete("/api/books/:id", function(req, res) {
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
-
-
-
 
 // API Server start
 app.listen(PORT, () => {
