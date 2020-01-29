@@ -1,7 +1,7 @@
 # React Google Book Search
-MERN (MongoDB, Express, React, Node) React Application that uses a Google API to look up book results.
+MERN (MongoDB, Express, React, Node) Single Page React Application with react-router-dom that uses a Google API to look up book results.
 
-Save books to a collection and have the option to delete them.
+View and Save books to a collection and have the option to delete them.
 
 [!!!Does not function when running 'npm start' from the server file (Proxy Error). Works completely when running 'node server' from server file and 'npm start' from  client folder in two different terminals.]
 
